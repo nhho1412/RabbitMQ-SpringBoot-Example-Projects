@@ -14,7 +14,7 @@ import com.tiger.demoRabbitMQCustomerOne.model.Book;
 @Configuration
 public class RabbitMQConfig {
 
-	@RabbitListener(queues = {"javainuse.queue"})
+	@RabbitListener(queues = {"tiger.queue"})
     public void listen(Book book) {
         System.out.println("Message read from producer1: " + book);
     }

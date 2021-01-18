@@ -3,6 +3,8 @@ package com.example.demoRabbitMQProducer.config;
 import static org.springframework.amqp.core.BindingBuilder.bind;
 
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Declarables;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
@@ -31,16 +33,20 @@ public class RabbitMQConfig {
 	@Value("${tiger.rabbitmq.routingkey2}")
 	String routingkey2;
 
-	/*
-	 * @Bean Queue queue() { return new Queue(queueName, false); }
-	 * 
-	 * @Bean DirectExchange exchange() { return new DirectExchange(exchange); }
-	 */
-
-	/*
-	 * @Bean Binding binding(Queue queue, DirectExchange exchange) { return
-	 * BindingBuilder.bind(queue).to(exchange).with(routingkey); }
-	 */
+//	@Bean
+//	Queue queue() {
+//		return new Queue(queueName, false);
+//	}
+//
+//	@Bean
+//	DirectExchange exchange() {
+//		return new DirectExchange(exchange);
+//	}
+//
+//	@Bean
+//	Binding binding(Queue queue, DirectExchange exchange) {
+//		return BindingBuilder.bind(queue).to(exchange).with(routingkey);
+//	}
 
 	@Bean
 	public Declarables directBingdings() {
@@ -50,12 +56,12 @@ public class RabbitMQConfig {
 		return new Declarables(directExchange, bind(directQueue1).to(directExchange).with(routingkey),
 				bind(directQueue2).to(directExchange).with(routingkey2));
 	}
-	
-//	@RabbitListener(queues = {"javainuse.queue", "javainuse.queue2"})
+
+//	@RabbitListener(queues = {"tiger.queue", "tiger.queue2"})
 //    public void listen(Book book) {
 //        System.out.println("Message read from myQueue : " + book);
 //    }
-    
+
 	@Bean
 	public MessageConverter jsonMessageConverter() {
 		return new Jackson2JsonMessageConverter();

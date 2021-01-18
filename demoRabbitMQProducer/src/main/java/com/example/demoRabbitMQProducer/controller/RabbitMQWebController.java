@@ -21,7 +21,7 @@ public class RabbitMQWebController {
 		book.setTitle(title);
 		book.setAuthor(author);
 		rabbitMQSender.send(book);
-		return("Producer1: send successfully");
+		return("Producer 1: send successfully");
 	}
 	
 	@GetMapping(value="/producer2")
@@ -30,6 +30,6 @@ public class RabbitMQWebController {
 		book.setTitle(title);
 		book.setAuthor(author);
 		rabbitMQSender.send2(book);
-		return("Producer2: send successfully");
+		return("Producer 2: send successfully");
 	}
 }
